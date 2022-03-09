@@ -30,3 +30,26 @@
 *.exe
 *.out
 *.app
+
+
+# dependencies
+/reactfrontend/node_modules
+/reactfrontend/.pnp
+/reactfrontend.pnp.js
+
+# testing
+/reactfrontend/coverage
+
+# production
+/reactfrontend/build
+
+# misc
+/reactfrontend.DS_Store
+/reactfrontend.env.local
+/reactfrontend.env.development.local
+/reactfrontend.env.test.local
+/reactfrontend.env.production.local
+
+/reactfrontendnpm-debug.log*
+/reactfrontendyarn-debug.log*
+/reactfrontendyarn-error.log*
