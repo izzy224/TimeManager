@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "ReactFrontend", "ReactFrontend\ReactFrontend.esproj", "{4A88D747-1294-4932-9B4C-BA79AECED685}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASPBackend", "ASPBackend\ASPBackend.csproj", "{9633F75A-DD87-4926-9D52-042C7654C7FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASPBackend", "ASPBackend\ASPBackend.csproj", "{9633F75A-DD87-4926-9D52-042C7654C7FE}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "reactfrontend", "reactfrontend\reactfrontend.esproj", "{193D76E2-3AE3-486A-B253-396BD4DB75E7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,16 +13,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4A88D747-1294-4932-9B4C-BA79AECED685}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A88D747-1294-4932-9B4C-BA79AECED685}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A88D747-1294-4932-9B4C-BA79AECED685}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{4A88D747-1294-4932-9B4C-BA79AECED685}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A88D747-1294-4932-9B4C-BA79AECED685}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4A88D747-1294-4932-9B4C-BA79AECED685}.Release|Any CPU.Deploy.0 = Release|Any CPU
 		{9633F75A-DD87-4926-9D52-042C7654C7FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9633F75A-DD87-4926-9D52-042C7654C7FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9633F75A-DD87-4926-9D52-042C7654C7FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9633F75A-DD87-4926-9D52-042C7654C7FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{193D76E2-3AE3-486A-B253-396BD4DB75E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{193D76E2-3AE3-486A-B253-396BD4DB75E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{193D76E2-3AE3-486A-B253-396BD4DB75E7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{193D76E2-3AE3-486A-B253-396BD4DB75E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{193D76E2-3AE3-486A-B253-396BD4DB75E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{193D76E2-3AE3-486A-B253-396BD4DB75E7}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
