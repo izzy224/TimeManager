@@ -1,4 +1,4 @@
-﻿namespace ASPBackend.Models
+﻿namespace ASPBackend.Models.Utility
 {
     public class UserLogin
     {
