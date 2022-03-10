@@ -1,5 +1,6 @@
 using ASPBackend.DataAccess;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -12,7 +13,10 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<DataContext>();//Added my TimeManager data context
+builder.Services.AddDbContext<DataContext>(options =>     //Added my TimeManager data context
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) // Add JWT Authentication
     .AddJwtBearer(options =>

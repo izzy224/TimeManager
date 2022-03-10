@@ -16,8 +16,8 @@ namespace ASPBackend.Models
         public int IdManagementEntity { get; set; }
         public ManagementEntity ManagementEntity { get; set; }
         [Required]
-        public TimeOnly StartTime { get; set; }
+        public DateTime StartTime { get; set; }
         [Required]
-        public TimeOnly EndTime { get; set; } 
+        public DateTime EndTime { get; set; } 
     }
 }

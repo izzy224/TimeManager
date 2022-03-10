@@ -11,6 +11,6 @@ namespace ASPBackend.Models
         [Required]
         public User User { get; set; }
         [Required]
-        public DateOnly Date { get; set; }
+        public DateTime Date { get; set; }
     }
 }

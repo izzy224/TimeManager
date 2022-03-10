@@ -9,25 +9,25 @@ namespace ASPBackend.Controllers
     [ApiController]
     public class RegisterController : ControllerBase
     {
-        private IConfiguration _configuration;
+        //private IConfiguration _configuration;
 
-        public RegisterController(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
-        [AllowAnonymous]
-        [HttpPost]
-        public IActionResult Login([FromBody] User userLogin)
-        {
-            var user = Authenticate(userLogin);
+        //public RegisterController(IConfiguration configuration)
+        //{
+        //    _configuration = configuration;
+        //}
+        //[AllowAnonymous]
+        //[HttpPost]
+        //public IActionResult Login([FromBody] User userLogin)
+        //{
+        //    var user = Authenticate(userLogin);
 
-            if (user != null)
-            {
-                var token = Generate(user);
-                return Ok(token);
-            }
+        //    if (user != null)
+        //    {
+        //        var token = Generate(user);
+        //        return Ok(token);
+        //    }
 
-            return NotFound("User not found");
-        }
+        //    return NotFound("User not found");
+        //}
     }
 }
