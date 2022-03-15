@@ -5,7 +5,7 @@ namespace ASPBackend.DataAccess.Repositories.Implementations
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly DataContext Context;
+        protected readonly DataContext Context;
 
         public GenericRepository(DataContext _context)
         {
@@ -35,7 +35,7 @@ namespace ASPBackend.DataAccess.Repositories.Implementations
         }
         public async Task Update(T obj)
         {
-            await Task.Run(() => Context.Set<T>().Update(obj));//Might reconsider
+            await Task.Run(() => Context.Set<T>().Update(obj));//Might reconsider, not true async
             await Save();
         }
         public async Task Save()

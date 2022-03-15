@@ -1,4 +1,6 @@
 using ASPBackend.DataAccess;
+using ASPBackend.DataAccess.Repositories.Implementations;
+using ASPBackend.DataAccess.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -17,6 +19,19 @@ builder.Services.AddDbContext<DataContext>(options =>     //Added my TimeManager
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+builder.Services.AddScoped<ICurrencyRepository, CurrencyRepository>();
+builder.Services.AddScoped<IManagementEntityRepository, ManagementEntityRepository>();
+builder.Services.AddScoped<ITimeScheduleRepository, TimeScheduleRepository>();
+builder.Services.AddScoped<IToDoRepository, ToDoRepository>();
+builder.Services.AddScoped<IToDoRepository, ToDoRepository>();
+builder.Services.AddScoped<ITransactionCategoryRepository, TransactionCategoryRepository>();
+builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+builder.Services.AddScoped<ITransactionTypeRepository, TransactionTypeRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+builder.Services.AddScoped<IWalletRepository, WalletRepository>();
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme) // Add JWT Authentication
     .AddJwtBearer(options =>
