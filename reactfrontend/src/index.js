@@ -7,18 +7,22 @@ import reportWebVitals from "./reportWebVitals";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Login from "./components/Login";
+import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
+import theme from "./theme";
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <div>
-        <Navbar></Navbar>
-        <Routes>
-          <Route path="/" element={<App />}></Route>
-          <Route path="/login" element={<Login />}></Route>
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <ChakraProvider theme={theme}>
+      <BrowserRouter>
+        <div>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<App />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </ChakraProvider>
   </React.StrictMode>,
   document.getElementById("root")
 );

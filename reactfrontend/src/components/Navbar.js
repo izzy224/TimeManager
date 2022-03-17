@@ -1,35 +1,19 @@
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { Box, Flex, IconButton, useColorMode, Text } from "@chakra-ui/react";
 import React from "react";
-import { Box } from "@mui/system";
-import {
-  AppBar,
-  Icon,
-  IconButton,
-  Toolbar,
-  Typography,
-  Button,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 const Navbar = () => {
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <>
-      <Box>
-        <AppBar position="static">
-          <Toolbar>
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
-            >
-              <MenuIcon />
-            </IconButton>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              Time Manager
-            </Typography>
-            <Button color="inherit">Login</Button>
-          </Toolbar>
-        </AppBar>
+      <Box mx="10px" borderBottom="2px">
+        <Flex px="5" justifyContent="space-between">
+          <Text fontSize="lg">TimeManager</Text>
+          <IconButton
+            icon={colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+            onClick={toggleColorMode}
+            variant="ghost"
+          />
+        </Flex>
       </Box>
     </>
   );
