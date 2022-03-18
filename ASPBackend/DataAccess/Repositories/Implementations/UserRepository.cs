@@ -13,8 +13,7 @@ namespace ASPBackend.DataAccess.Repositories.Implementations
 
         public async Task CreateUserAsync(User user)
         {
-            user.IdUserRole = 1;
-            await Context.AddAsync(user);
+            await Insert(user);
         }
 
         public async Task<User> ValidateUser(UserLogin userLogin)

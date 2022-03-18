@@ -3,6 +3,7 @@ import { Box, Flex, IconButton, useColorMode, Text } from "@chakra-ui/react";
 import React from "react";
 const Navbar = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+
   return (
     <>
       <Box mx="10px" borderBottom="2px">

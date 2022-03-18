@@ -15,6 +15,18 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowOrigin",
+        builder =>
+        {
+            builder.WithOrigins("https://localhost:3000")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+        });
+});
+
+
 builder.Services.AddDbContext<DataContext>(options =>     //Added my TimeManager data context
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -59,11 +71,24 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+
+
+app.UseRouting();
+
+app.UseCors();
+app.UseAuthorization();//Dont delete that
+
+app.UseEndpoints(_ => { });
+
+
+
+
 app.UseHttpsRedirection();
 
 app.UseAuthentication();//Added Authentication
 
-app.UseAuthorization();
+
 
 app.MapControllers();
 

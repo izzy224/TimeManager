@@ -18,9 +18,10 @@ namespace ASPBackend.Controllers
         private IConfiguration _configuration;
         private IUserRepository _userRepository;
 
-        public LoginController(IConfiguration configuration)
+        public LoginController(IConfiguration configuration, IUserRepository userRepository)
         {
             _configuration = configuration;
+            _userRepository = userRepository;
         }
         [AllowAnonymous]
         [HttpPost]
@@ -47,7 +48,7 @@ namespace ASPBackend.Controllers
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.GivenName, user.Name),
                 new Claim(ClaimTypes.Surname, user.Surname),
-                new Claim(ClaimTypes.Role, user.Role),
+                new Claim(ClaimTypes.Role, user.UserRole.Name),
             };
 
             var token = new JwtSecurityToken(_configuration["Jwt:Issuer"],

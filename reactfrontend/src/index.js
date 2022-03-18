@@ -6,7 +6,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Login from "./components/Login";
+import Register from "./components/Register";
 import { ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import theme from "./theme";
 
@@ -18,7 +18,7 @@ ReactDOM.render(
           <Navbar />
           <Routes>
             <Route path="/" element={<App />}></Route>
-            <Route path="/login" element={<Login />}></Route>
+            <Route path="/register" element={<Register />}></Route>
           </Routes>
         </div>
       </BrowserRouter>

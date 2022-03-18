@@ -1,6 +1,7 @@
 ﻿using ASPBackend.DataAccess.Repositories.Interfaces;
 using ASPBackend.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,17 +14,20 @@ namespace ASPBackend.Controllers
         private IConfiguration _configuration;
         private IUserRepository _userRepository;
 
-        public RegisterController(IConfiguration configuration)
+        public RegisterController(IConfiguration configuration, IUserRepository userRepository)
         {
             _configuration = configuration;
+            _userRepository = userRepository;
         }
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Register([FromBody] User User)
+        [EnableCors]
+        public async Task<IActionResult> Post([FromBody] User User)
         {
             try
             {
-                await _userRepository.CreateUserAsync(User);   
+                User.UserRoleId = 1;
+                await _userRepository.CreateUserAsync(User);
                 return Ok();
             }
             catch (Exception e)

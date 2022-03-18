@@ -4,6 +4,7 @@ using ASPBackend.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASPBackend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220318120431_UserEntityErrors2")]
+    partial class UserEntityErrors2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -255,6 +257,9 @@ namespace ASPBackend.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("IdUserRole")
+                        .HasColumnType("int");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(30)
@@ -270,17 +275,12 @@ namespace ASPBackend.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.Property<int>("UserRoleId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserRoleId");
 
                     b.ToTable("Users");
                 });
@@ -400,17 +400,6 @@ namespace ASPBackend.Migrations
                         .IsRequired();
 
                     b.Navigation("TransactionType");
-                });
-
-            modelBuilder.Entity("ASPBackend.Models.User", b =>
-                {
-                    b.HasOne("ASPBackend.Models.UserRole", "UserRole")
-                        .WithMany()
-                        .HasForeignKey("UserRoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserRole");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.Wallet", b =>
