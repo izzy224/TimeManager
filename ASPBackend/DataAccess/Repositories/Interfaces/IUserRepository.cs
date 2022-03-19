@@ -7,5 +7,6 @@ namespace ASPBackend.DataAccess.Repositories.Interfaces
     {
         Task<User> ValidateUser(UserLogin userLogin);
         Task CreateUserAsync(User user);
+        Task<User> GetByUsername(string username);
     }
 }

@@ -7,10 +7,12 @@ import {
   FormLabel,
   Input,
   Button,
+  Link as ChakraLink,
 } from "@chakra-ui/react";
+import { Navigate, Link } from "react-router-dom";
 import React, { useState } from "react";
-
-const Form = {
+import ErrorMessage from "./ErrorMessage";
+const form = {
   Username: "",
   Email: "",
   Name: "",
@@ -18,22 +20,37 @@ const Form = {
   Password: "",
 };
 const Register = () => {
-  const [registerData, setRegisterData] = useState(...Form);
+  const [registerData, setRegisterData] = useState({ ...form });
   const [confirmPass, setConfirmPass] = useState("");
-
+  const [errors, setErrors] = useState([]);
+  const [success, setSuccess] = useState(false);
   const handleSubmit = (event) => {
-    // var data = new FormData();
-    // data.append("user", JSON.stringify(registerData));
-    if()
-    fetch("/api/register", {
-      headers: { "Content-type": "application/json" },
-      method: "POST",
-      body: JSON.stringify(registerData),
-    })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
+    if (confirmPass === registerData.Password) {
+      fetch("/api/register", {
+        headers: { "Content-type": "application/json" },
+        method: "POST",
+        body: JSON.stringify(registerData),
+      })
+        .then((response) => response)
+        .then((data) => {
+          if (data.status == 200) {
+            setSuccess(true);
+            setRegisterData(form);
+          } else {
+            var tempErr = [data.title];
+            for (var err in data.errors) {
+              tempErr = [...tempErr, data.errors[err][0]];
+            }
+            setErrors(tempErr);
+          }
+        });
+    }
     event.preventDefault();
   };
+  if (success) {
+    return <Navigate to="/login" />;
+  }
+
   return (
     <>
       <Flex mt="5" width="full" justifyContent="center" alignItems="center">
@@ -45,10 +62,9 @@ const Register = () => {
           boxShadow="lg"
         >
           <Box textAlign="center">
-            <Heading>Login</Heading>
+            <Heading>Register</Heading>
             <Box my="4" textAlign="left"></Box>
             <form onSubmit={handleSubmit}>
-              {/* Username, Password, Email, Name, Surname */}
               <FormControl isRequired>
                 <FormLabel>Username</FormLabel>
                 <Input
@@ -123,6 +139,18 @@ const Register = () => {
               </Button>
             </form>
           </Box>
+          {errors.length != 0 ? (
+            errors.map((err) => {
+              return <ErrorMessage message={err} />;
+            })
+          ) : (
+            <></>
+          )}
+          <Center>
+            <ChakraLink as={Link} to="/login">
+              Already have an account?
+            </ChakraLink>
+          </Center>
         </Box>
       </Flex>
     </>

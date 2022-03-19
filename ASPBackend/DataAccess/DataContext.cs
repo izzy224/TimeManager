@@ -6,8 +6,11 @@ namespace ASPBackend.DataAccess
     public class DataContext : DbContext
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
+        { 
+            this.ChangeTracker.LazyLoadingEnabled = true;
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
         }
 
         public DbSet<Currency> Currencies { get; set; }

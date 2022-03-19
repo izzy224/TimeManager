@@ -9,6 +9,7 @@ namespace ASPBackend.DataAccess.Repositories.Implementations
     {
         public UserRepository(DataContext _context) : base(_context)
         {
+            _context.Users.Include(x => x.UserRole).ToList();
         }
 
         public async Task CreateUserAsync(User user)
@@ -16,9 +17,14 @@ namespace ASPBackend.DataAccess.Repositories.Implementations
             await Insert(user);
         }
 
+        public async Task<User> GetByUsername(string username)
+        {
+            return await Context.Users.FirstOrDefaultAsync(x => x.Username == username);
+        }
+
         public async Task<User> ValidateUser(UserLogin userLogin)
         {
-            return await Context.Users.FirstOrDefaultAsync(u => u.Username.ToLower() == userLogin.Username.ToLower() && u.Password == userLogin.Password);
+            return await Context.Users.FirstOrDefaultAsync(u => u.Username.ToLower() == userLogin.Username.ToLower() && u.Password.Equals(userLogin.Password));
         }
     }
 }

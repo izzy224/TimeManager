@@ -6,7 +6,7 @@ namespace ASPBackend.Models
     public class Currency
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public int CurrencyId { get; set; }
         [MaxLength(50)]
         public string Name { get; set; }
         [MaxLength(5)]

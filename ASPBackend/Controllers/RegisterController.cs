@@ -13,11 +13,13 @@ namespace ASPBackend.Controllers
     {
         private IConfiguration _configuration;
         private IUserRepository _userRepository;
+        private IUserRoleRepository _userRoleRepository;
 
-        public RegisterController(IConfiguration configuration, IUserRepository userRepository)
+        public RegisterController(IConfiguration configuration, IUserRepository userRepository, IUserRoleRepository userRoleRepository)
         {
             _configuration = configuration;
             _userRepository = userRepository;
+            _userRoleRepository = userRoleRepository;
         }
         [AllowAnonymous]
         [HttpPost]
@@ -27,6 +29,7 @@ namespace ASPBackend.Controllers
             try
             {
                 User.UserRoleId = 1;
+                User.UserRole = await _userRoleRepository.GetById(User.UserRoleId);
                 await _userRepository.CreateUserAsync(User);
                 return Ok();
             }

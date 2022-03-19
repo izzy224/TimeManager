@@ -6,8 +6,8 @@ namespace ASPBackend.Models
     public class ManagementEntity
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
-        public int IdUser { get; set; }
+        public int ManagementEntityId { get; set; }
+        public int UserId { get; set; }
         [Required]
         public User User { get; set; }
         [Required]

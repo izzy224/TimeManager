@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASPBackend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220318120431_UserEntityErrors2")]
-    partial class UserEntityErrors2
+    [Migration("20220318215712_FirstMigration")]
+    partial class FirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,11 +26,11 @@ namespace ASPBackend.Migrations
 
             modelBuilder.Entity("ASPBackend.Models.Currency", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("CurrencyId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CurrencyId"), 1L, 1);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -42,29 +42,26 @@ namespace ASPBackend.Migrations
                         .HasMaxLength(5)
                         .HasColumnType("nvarchar(5)");
 
-                    b.HasKey("Id");
+                    b.HasKey("CurrencyId");
 
                     b.ToTable("Currencies");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.ManagementEntity", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ManagementEntityId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ManagementEntityId"), 1L, 1);
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("IdUser")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ManagementEntityId");
 
                     b.HasIndex("UserId");
 
@@ -73,11 +70,11 @@ namespace ASPBackend.Migrations
 
             modelBuilder.Entity("ASPBackend.Models.TimeSchedule", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("TimeScheduleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TimeScheduleId"), 1L, 1);
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -86,9 +83,6 @@ namespace ASPBackend.Migrations
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("IdManagementEntity")
-                        .HasColumnType("int");
 
                     b.Property<int>("ManagementEntityId")
                         .HasColumnType("int");
@@ -101,7 +95,7 @@ namespace ASPBackend.Migrations
                     b.Property<DateTime>("StartTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("TimeScheduleId");
 
                     b.HasIndex("ManagementEntityId");
 
@@ -110,19 +104,16 @@ namespace ASPBackend.Migrations
 
             modelBuilder.Entity("ASPBackend.Models.ToDo", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ToDoId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ToDoId"), 1L, 1);
 
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
-
-                    b.Property<int>("IdManagementEntity")
-                        .HasColumnType("int");
 
                     b.Property<int>("IdToDoStatus")
                         .HasColumnType("int");
@@ -138,7 +129,7 @@ namespace ASPBackend.Migrations
                     b.Property<int>("ToDoStatusId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ToDoId");
 
                     b.HasIndex("ManagementEntityId");
 
@@ -149,27 +140,27 @@ namespace ASPBackend.Migrations
 
             modelBuilder.Entity("ASPBackend.Models.ToDoStatus", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("ToDoStatusId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ToDoStatusId"), 1L, 1);
 
                     b.Property<int>("Name")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("ToDoStatusId");
 
                     b.ToTable("ToDoStatuses");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.Transaction", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("TransactionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionId"), 1L, 1);
 
                     b.Property<double>("Amount")
                         .HasColumnType("float");
@@ -179,24 +170,23 @@ namespace ASPBackend.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
-                    b.Property<int>("IdTransactionCategory")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdWallet")
-                        .HasColumnType("int");
-
                     b.Property<int>("TransactionCategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("TransactionDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("TransactionTypeId")
+                        .HasColumnType("int");
+
                     b.Property<int>("WalletId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("TransactionId");
 
                     b.HasIndex("TransactionCategoryId");
+
+                    b.HasIndex("TransactionTypeId");
 
                     b.HasIndex("WalletId");
 
@@ -205,14 +195,11 @@ namespace ASPBackend.Migrations
 
             modelBuilder.Entity("ASPBackend.Models.TransactionCategory", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("TransactionCategoryId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("IdTransactionType")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionCategoryId"), 1L, 1);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -221,7 +208,7 @@ namespace ASPBackend.Migrations
                     b.Property<int>("TransactionTypeId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("TransactionCategoryId");
 
                     b.HasIndex("TransactionTypeId");
 
@@ -230,35 +217,32 @@ namespace ASPBackend.Migrations
 
             modelBuilder.Entity("ASPBackend.Models.TransactionType", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("TransactionTypeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("TransactionTypeId"), 1L, 1);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("TransactionTypeId");
 
                     b.ToTable("TransactionTypes");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdUserRole")
-                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -275,54 +259,53 @@ namespace ASPBackend.Migrations
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
+                    b.Property<int>("UserRoleId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasMaxLength(30)
                         .HasColumnType("nvarchar(30)");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
+
+                    b.HasIndex("UserRoleId");
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.UserRole", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserRoleId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserRoleId"), 1L, 1);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("UserRoleId");
 
                     b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.Wallet", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("WalletId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("WalletId"), 1L, 1);
 
                     b.Property<int>("CurrencyId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdCurrency")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IdUser")
                         .HasColumnType("int");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("WalletId");
 
                     b.HasIndex("CurrencyId");
 
@@ -380,6 +363,10 @@ namespace ASPBackend.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("ASPBackend.Models.TransactionType", null)
+                        .WithMany("Transactions")
+                        .HasForeignKey("TransactionTypeId");
+
                     b.HasOne("ASPBackend.Models.Wallet", "Wallet")
                         .WithMany("Transactions")
                         .HasForeignKey("WalletId")
@@ -400,6 +387,17 @@ namespace ASPBackend.Migrations
                         .IsRequired();
 
                     b.Navigation("TransactionType");
+                });
+
+            modelBuilder.Entity("ASPBackend.Models.User", b =>
+                {
+                    b.HasOne("ASPBackend.Models.UserRole", "UserRole")
+                        .WithMany("Users")
+                        .HasForeignKey("UserRoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("UserRole");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.Wallet", b =>
@@ -436,9 +434,19 @@ namespace ASPBackend.Migrations
                     b.Navigation("Transactions");
                 });
 
+            modelBuilder.Entity("ASPBackend.Models.TransactionType", b =>
+                {
+                    b.Navigation("Transactions");
+                });
+
             modelBuilder.Entity("ASPBackend.Models.User", b =>
                 {
                     b.Navigation("ManagementEntities");
+                });
+
+            modelBuilder.Entity("ASPBackend.Models.UserRole", b =>
+                {
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.Wallet", b =>
