@@ -9,5 +9,6 @@ namespace ASPBackend.Controllers.Utility
         string Generate(User user);
         TokenValidationParameters GetValidationParameters();
         JwtSecurityToken ValidateToken(string authToken);
+        Task<User> GetUser(string Jwt);
     }
 }

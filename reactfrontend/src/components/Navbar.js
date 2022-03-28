@@ -20,7 +20,7 @@ const Navbar = () => {
         <Flex px="5" justifyContent="space-between">
           <ChakraLink as={Link} to="/">
             <Text textAlign="left" fontSize="lg">
-              ProjectName
+              ResourceManager
             </Text>
           </ChakraLink>
           <Box>

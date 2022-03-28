@@ -29,13 +29,13 @@ const App = () => {
             <Heading
               fontFamily="futura-pt, sans-serif"
               fontWeight="700"
-              fontSize="6xl"
+              fontSize="5xl"
               textAlign="center"
             >
-              TempName
+              ResourceManager
             </Heading>
             <Text fontSize="2xl" textAlign="center">
-              A resource manager
+              A tool for time-efficiency
             </Text>
           </Box>
           <Center>

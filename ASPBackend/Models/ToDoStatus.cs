@@ -6,7 +6,7 @@ namespace ASPBackend.Models
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ToDoStatusId { get; set; }
-        public int Name { get; set; }
+        public string Name { get; set; }
         public List<ToDo> Todos { get; set; }
         public ToDoStatus()
         {

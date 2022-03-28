@@ -1,4 +1,5 @@
-﻿using ASPBackend.Models;
+﻿using ASPBackend.DataAccess.Repositories.Interfaces;
+using ASPBackend.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -11,9 +12,11 @@ namespace ASPBackend.Controllers.Utility
     public class JwtService : IJwtService
     {
         private IConfiguration _configuration;
-        public JwtService(IConfiguration configuration)
+        private IUserRepository _userRepository;
+        public JwtService(IConfiguration configuration, IUserRepository userRepository)
         {
             _configuration = configuration;
+            _userRepository = userRepository;
         }
 
 
@@ -62,6 +65,24 @@ namespace ASPBackend.Controllers.Utility
                 ValidAudience = "https://localhost:44392",
                 IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"])) // The same key as the one that generate the token
             };
+        }
+
+        public async Task<User> GetUser(string Jwt)
+        {
+            try
+            {
+                
+                var token = ValidateToken(Jwt);
+
+                int userId = Int32.Parse(token.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti).Value);
+                var user = await _userRepository.GetById(userId);
+
+                return user;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
         }
     }
 }

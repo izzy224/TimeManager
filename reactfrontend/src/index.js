@@ -11,6 +11,8 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./theme";
+import Todos from "./components/Todos";
+import Sidebar from "./components/Sidebar";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,6 +25,7 @@ ReactDOM.render(
             <Route path="/register" element={<Register />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/home" element={<Home />}></Route>
+            <Route path="/todos" element={<Todos />}></Route>
           </Routes>
         </div>
       </BrowserRouter>

@@ -1,5 +1,6 @@
 ﻿using ASPBackend.DataAccess.Repositories.Interfaces;
 using ASPBackend.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASPBackend.DataAccess.Repositories.Implementations
 {
@@ -7,6 +8,12 @@ namespace ASPBackend.DataAccess.Repositories.Implementations
     {
         public ToDoRepository(DataContext _context) : base(_context)
         {
+
+        }
+
+        public async Task<List<ToDo>> GetAllByManagementEntity(int manEntId)
+        {
+            return await Context.Todos.Where(x => x.ManagementEntityId == manEntId).ToListAsync();
         }
     }
 }
