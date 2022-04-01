@@ -15,5 +15,10 @@ namespace ASPBackend.DataAccess.Repositories.Implementations
         {
             return await Context.Todos.Where(x => x.ManagementEntityId == manEntId).ToListAsync();
         }
+
+        public async Task<List<ToDo>> GetAllByManagementEntityStatus(int manEntId, int statusId)
+        {
+            return await Context.Todos.Where(x => x.ManagementEntityId == manEntId && x.ToDoStatusId == statusId).ToListAsync();
+        }
     }
 }

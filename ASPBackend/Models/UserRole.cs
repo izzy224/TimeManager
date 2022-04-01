@@ -11,7 +11,7 @@ namespace ASPBackend.Models
         public int UserRoleId { get; set; }
         public string? Name { get; set; }
         [JsonIgnore]
-        public IEnumerable<User> Users { get; set; }
+        public virtual IEnumerable<User> Users { get; set; }
         public UserRole()
         {
             Users = new List<User>();

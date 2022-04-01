@@ -5,6 +5,7 @@ namespace ASPBackend.Models
 {
     public class TimeSchedule
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TimeScheduleId { get; set; }
         [Required]
@@ -13,8 +14,9 @@ namespace ASPBackend.Models
         [MaxLength(200)]
         public string Description { get; set; }
         [Required]
+        [ForeignKey("ManagementEntity")]
         public int ManagementEntityId { get; set; }
-        public ManagementEntity ManagementEntity { get; set; }
+        public virtual ManagementEntity ManagementEntity { get; set; }
         [Required]
         public DateTime StartTime { get; set; }
         [Required]

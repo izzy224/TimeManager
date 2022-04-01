@@ -4,6 +4,7 @@ using ASPBackend.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASPBackend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220331181510_ChangedColumnName")]
+    partial class ChangedColumnName
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +44,7 @@ namespace ASPBackend.Migrations
 
                     b.HasKey("CurrencyId");
 
-                    b.ToTable("Currencies", (string)null);
+                    b.ToTable("Currencies");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.ManagementEntity", b =>
@@ -63,7 +65,7 @@ namespace ASPBackend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("ManagementEntities", (string)null);
+                    b.ToTable("ManagementEntities");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.TimeSchedule", b =>
@@ -97,7 +99,7 @@ namespace ASPBackend.Migrations
 
                     b.HasIndex("ManagementEntityId");
 
-                    b.ToTable("TimeSchedules", (string)null);
+                    b.ToTable("TimeSchedules");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.ToDo", b =>
@@ -130,7 +132,7 @@ namespace ASPBackend.Migrations
 
                     b.HasIndex("ToDoStatusId");
 
-                    b.ToTable("Todos", (string)null);
+                    b.ToTable("Todos");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.ToDoStatus", b =>
@@ -147,7 +149,7 @@ namespace ASPBackend.Migrations
 
                     b.HasKey("ToDoStatusId");
 
-                    b.ToTable("ToDoStatuses", (string)null);
+                    b.ToTable("ToDoStatuses");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.Transaction", b =>
@@ -181,7 +183,7 @@ namespace ASPBackend.Migrations
 
                     b.HasIndex("WalletId");
 
-                    b.ToTable("Transactions", (string)null);
+                    b.ToTable("Transactions");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.TransactionCategory", b =>
@@ -203,7 +205,7 @@ namespace ASPBackend.Migrations
 
                     b.HasIndex("TransactionTypeId");
 
-                    b.ToTable("TransactionCategories", (string)null);
+                    b.ToTable("TransactionCategories");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.TransactionType", b =>
@@ -220,7 +222,7 @@ namespace ASPBackend.Migrations
 
                     b.HasKey("TransactionTypeId");
 
-                    b.ToTable("TransactionTypes", (string)null);
+                    b.ToTable("TransactionTypes");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.User", b =>
@@ -262,7 +264,7 @@ namespace ASPBackend.Migrations
 
                     b.HasIndex("UserRoleId");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.UserRole", b =>
@@ -278,7 +280,7 @@ namespace ASPBackend.Migrations
 
                     b.HasKey("UserRoleId");
 
-                    b.ToTable("UserRoles", (string)null);
+                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.Wallet", b =>
@@ -301,7 +303,7 @@ namespace ASPBackend.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Wallets", (string)null);
+                    b.ToTable("Wallets");
                 });
 
             modelBuilder.Entity("ASPBackend.Models.ManagementEntity", b =>

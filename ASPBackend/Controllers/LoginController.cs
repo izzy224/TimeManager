@@ -42,30 +42,29 @@ namespace ASPBackend.Controllers
                 {
                     HttpOnly = true,
                 });
-                return Ok(new {message="success"});
+                return Ok(new {message="success", jwtToken=token,});
             }
 
             return NotFound("User not found");
         }
-        //[HttpGet]
-        //public async Task<IActionResult> GetUser()
-        //{
-        //    try
-        //    {
-        //        var jwt = Request.Cookies["jwt"];
-        //        var token = _jwtService.ValidateToken(jwt);
+        [HttpGet]
+        public async Task<IActionResult> GetUser()
+        {
+            try
+            {
+                var jwt = Request.Cookies["jwt"];
+                var token = _jwtService.ValidateToken(jwt);
 
-        //        int userId = Int32.Parse(token.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti).Value);
-        //        var user = await _userRepository.GetById(userId);
+                int userId = Int32.Parse(token.Claims.FirstOrDefault(x => x.Type == JwtRegisteredClaimNames.Jti).Value);
+                var user = await _userRepository.GetById(userId);
 
-        //        return Ok(user);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return BadRequest(ex.Message);
-        //    }
-        //}
-        [Authorize]
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
         {

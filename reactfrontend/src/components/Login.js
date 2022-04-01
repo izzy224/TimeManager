@@ -25,6 +25,7 @@ const Login = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data?.message == "success") {
+          window.sessionStorage.setItem("token", "Bearer " + data?.jwtToken);
           setSuccess(true);
         }
       });

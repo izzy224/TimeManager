@@ -5,13 +5,14 @@ namespace ASPBackend.Models
 {
     public class Currency
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CurrencyId { get; set; }
         [MaxLength(50)]
         public string Name { get; set; }
         [MaxLength(5)]
         public string Symbol { get; set; }
-        public IEnumerable<Wallet> Wallets { get; set; }
+        public virtual IEnumerable<Wallet> Wallets { get; set; }
 
         public Currency()
         {

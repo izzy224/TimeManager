@@ -9,6 +9,7 @@ namespace ASPBackend.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId { get; set; }
+        [Required]
         [ForeignKey("UserRole")]
         public int UserRoleId { get; set; }
         [Required, MinLength(4), MaxLength(30)]

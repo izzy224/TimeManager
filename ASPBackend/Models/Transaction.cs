@@ -5,6 +5,7 @@ namespace ASPBackend.Models
 {
     public class Transaction
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int TransactionId { get; set; }
         [Required]

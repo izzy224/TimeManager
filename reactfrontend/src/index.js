@@ -11,8 +11,7 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./theme";
-import Todos from "./components/Todos";
-import Sidebar from "./components/Sidebar";
+import Todos from "./components/Todo/Todos";
 
 ReactDOM.render(
   <React.StrictMode>
