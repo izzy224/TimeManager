@@ -14,7 +14,8 @@ import theme from "./theme";
 import Todos from "./components/Todo/Todos";
 
 ReactDOM.render(
-  <React.StrictMode>
+  // Changed React.StrictMode to React.Fragment
+  <React.Fragment>
     <ChakraProvider theme={theme}>
       <BrowserRouter>
         <Navbar />
@@ -29,7 +30,7 @@ ReactDOM.render(
         </div>
       </BrowserRouter>
     </ChakraProvider>
-  </React.StrictMode>,
+  </React.Fragment>,
   document.getElementById("root")
 );
 

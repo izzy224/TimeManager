@@ -43,6 +43,7 @@ const dataTemplate = {
 const Todos = () => {
   const [boardData, setBoardData] = useState(dataTemplate);
   const [managementEntityId, setManagementEntityId] = useState(Number);
+
   useEffect(() => {
     const date = new Date();
     fetch("/api/todo/get", {
@@ -80,7 +81,7 @@ const Todos = () => {
     console.log(laneId);
     let toDoObject = {
       ManagementEntityId: managementEntityId,
-      ToDoStatusId: laneId,
+      ToDoStatusId: Number(laneId),
       Name: card.title,
       Description: card.description,
     };
@@ -92,11 +93,53 @@ const Todos = () => {
       },
       body: JSON.stringify(toDoObject),
     })
-      .then((response) => response.json)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        card.id = data.toDoId;
+        //UPDATE ID IN BOARD DATA AFTER POST, THE ADDED CARD HAS A RANDOM ID AS OF NOW, REFRESHES ONLY AFTER PAGE RESTART
+      });
+  };
+
+  const cardDelete = (cardId, laneId) => {
+    fetch(`/api/todo/delete`, {
+      method: "DELETE",
+      headers: {
+        Authorization: window.sessionStorage.getItem("token"),
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(cardId),
+    })
+      .then((response) => response.json())
       .then((data) => {
         console.log(data);
       });
   };
+  const cardMoveAcrossLanes = (fromLaneId, toLaneId, cardId, index) => {
+    fetch("/api/todo/updatestatus", {
+      method: "PUT",
+      headers: {
+        Authorization: window.sessionStorage.getItem("token"),
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({ ToDoId: cardId, ToDoStatusId: toLaneId }),
+    }).then((response) => response.json());
+  };
+  //UPDATE FUNCTIONALITY -- TODO
+  // const dataChange = (newData) => {
+  //   console.log(newData);
+  //   console.log(boardData);
+  //   if(newData.lanes.length == boardData.lanes.length)
+  //   {
+  //     let edited = newData.lanes.every((lane,index) => {
+  //         return lane.cards.length == boardData.lanes[index].length
+  //     })
+  //     if(edited)
+  //     {
+
+  //     }
+  //   }
+  // };
 
   return (
     <>
@@ -104,10 +147,12 @@ const Todos = () => {
         <Sidebar />
         <Board
           editable
-          draggable
           style={{ height: "94vh", width: "100%" }}
           data={boardData}
           onCardAdd={addCard}
+          onCardDelete={cardDelete}
+          onCardMoveAcrossLanes={cardMoveAcrossLanes}
+          // onDataChange={dataChange}
         />
       </Flex>
     </>

@@ -45,7 +45,7 @@ namespace ASPBackend.Controllers
                 return Ok(new {message="success", jwtToken=token,});
             }
 
-            return NotFound("User not found");
+            return NotFound(new {message= "An user with these credentials has not been found" });
         }
         [HttpGet]
         public async Task<IActionResult> GetUser()

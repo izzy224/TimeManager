@@ -11,10 +11,13 @@ import {
   Button,
   Link as ChakraLink,
 } from "@chakra-ui/react";
+import ErrorMessage from "./ErrorMessage";
 const Login = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [success, setSuccess] = useState(false);
+  const [message, setMessage] = useState("");
+
   const handleSubmit = (event) => {
     fetch("/api/login", {
       headers: { "Content-type": "application/json" },
@@ -24,9 +27,13 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
+
         if (data?.message == "success") {
           window.sessionStorage.setItem("token", "Bearer " + data?.jwtToken);
           setSuccess(true);
+        } else {
+          setMessage(data?.message);
         }
       });
 
@@ -73,6 +80,9 @@ const Login = () => {
             <ChakraLink as={Link} to="/register">
               Don't have an account?
             </ChakraLink>
+          </Center>
+          <Center>
+            {message !== "" ? <ErrorMessage message={message} /> : ""}
           </Center>
         </Box>
       </Flex>

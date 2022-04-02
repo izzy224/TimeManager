@@ -61,6 +61,7 @@ namespace ASPBackend.Controllers
 
             return NotFound();
         }
+        [HttpPost]
         public async Task<IActionResult> Post([FromBody] PostToDo toDo)
         {
             try {
@@ -68,16 +69,45 @@ namespace ASPBackend.Controllers
             {
                 return BadRequest("Invalid input");
             }
-            var newTodo = new ToDo() { ManagementEntityId = toDo.ManagementEntityId, ToDoStatusId = toDo.ToDoStatusId, Name = toDo.Name, Description = toDo.Description};
+                var newTodo = new ToDo() {
+                    ManagementEntityId = toDo.ManagementEntityId,
+                    ManagementEntity = await _managementEntityRepository.GetById(toDo.ManagementEntityId),
+                    ToDoStatusId = toDo.ToDoStatusId,
+                    Name = toDo.Name,
+                    Description = toDo.Description,
+                    ToDoStatus = await _toDoStatusRepository.GetById(toDo.ToDoStatusId)
+                };
             await _toDoRepository.Insert(newTodo);
-            return Ok();
+            return Ok(new { newTodo.ToDoId});
             }
             catch(Exception ex)
             {
                 return StatusCode(500, ex.Message);
             }
         }
-
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateToDo([FromBody] UpdateToDo oldToDo)
+        {
+            var newToDo = await _toDoRepository.GetById(oldToDo.ToDoId);  //Might reconsider, using update from repository instead
+            newToDo.Description = oldToDo.Description;
+            newToDo.Name = oldToDo.Name;
+            await _toDoRepository.Save();
+            return Ok();
+        }
+        [HttpPut("updatestatus")]
+        public async Task<IActionResult> UpdateToDoStatus([FromBody] UpdateToDoStatus oldToDo)
+        {
+            var newToDo = await _toDoRepository.GetById(oldToDo.ToDoId);
+            newToDo.ToDoStatusId = oldToDo.ToDoStatusId;
+            await _toDoRepository.Save();
+            return Ok();
+        }
+        [HttpDelete("delete")]
+        public async Task<IActionResult> DeleteToDo([FromBody]int id)
+        {
+            await _toDoRepository.Delete(id);
+            return Ok(new {message = "Success" });
+        }
 
 
     }
