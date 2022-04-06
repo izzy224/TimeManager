@@ -2,7 +2,6 @@ import { Flex } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Sidebar";
 import Board from "react-trello";
-import Cookies from "js-cookie";
 
 const data = {
   lanes: [
@@ -125,7 +124,7 @@ const Todos = () => {
       body: JSON.stringify({ ToDoId: cardId, ToDoStatusId: toLaneId }),
     }).then((response) => response.json());
   };
-  //UPDATE FUNCTIONALITY -- TODO
+  //"UPDATE" FUNCTIONALITY -- TODO
   // const dataChange = (newData) => {
   //   console.log(newData);
   //   console.log(boardData);

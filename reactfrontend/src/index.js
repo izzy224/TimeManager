@@ -11,24 +11,26 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./theme";
+import Schedule from "./components/Schedule/Schedule";
 import Todos from "./components/Todo/Todos";
 
 ReactDOM.render(
   // Changed React.StrictMode to React.Fragment
   <React.Fragment>
     <ChakraProvider theme={theme}>
-      <BrowserRouter>
-        <Navbar />
-        <div>
-          <Routes>
-            <Route path="/" element={<App />}></Route>
-            <Route path="/register" element={<Register />}></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/home" element={<Home />}></Route>
-            <Route path="/todos" element={<Todos />}></Route>
-          </Routes>
-        </div>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Navbar />
+          <div>
+            <Routes>
+              <Route path="/" element={<App />}></Route>
+              <Route path="/register" element={<Register />}></Route>
+              <Route path="/login" element={<Login />}></Route>
+              <Route path="/home" element={<Home />}></Route>
+              <Route path="/todos" element={<Todos />}></Route>
+              <Route path="/schedule" element={<Schedule />}></Route>
+            </Routes>
+          </div>
+        </BrowserRouter>
     </ChakraProvider>
   </React.Fragment>,
   document.getElementById("root")
