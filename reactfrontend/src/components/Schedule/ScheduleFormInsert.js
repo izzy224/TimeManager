@@ -110,7 +110,7 @@ const ScheduleFormInsert = ({
                       max="23"
                       step={1}
                       px="0"
-                      w="20%"
+                      w="30%"
                       onChange={(value) =>
                         setScheduleData({
                           ...scheduleData,
@@ -132,7 +132,7 @@ const ScheduleFormInsert = ({
                       max="59"
                       step={5}
                       px="0"
-                      w="20%"
+                      w="30%"
                       onChange={(value) =>
                         setScheduleData({
                           ...scheduleData,
@@ -158,7 +158,7 @@ const ScheduleFormInsert = ({
                       max="23"
                       step={1}
                       px="0"
-                      w="20%"
+                      w="30%"
                       onChange={(value) =>
                         setScheduleData({
                           ...scheduleData,
@@ -180,7 +180,7 @@ const ScheduleFormInsert = ({
                       max="59"
                       step={5}
                       px="0"
-                      w="20%"
+                      w="30%"
                       onChange={(value) =>
                         setScheduleData({
                           ...scheduleData,

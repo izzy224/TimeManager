@@ -60,6 +60,11 @@ const ScheduleGraph = ({ graphData, setSelectedScheduleId }) => {
         onClick={onGraphClick}
         data={mappedData}
         layout={{
+          plot_bgcolor: "#1A202C",
+          paper_bgcolor: "#1A202C",
+          font: {
+            color: "#F7F7F7",
+          },
           showlegend: false,
           autosize: true,
           xaxis: {

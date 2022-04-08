@@ -40,7 +40,7 @@ const Login = () => {
     event.preventDefault();
   };
   if (success) {
-    return <Navigate to="/home" />;
+    return <Navigate to="/todos" />;
   }
   return (
     <>

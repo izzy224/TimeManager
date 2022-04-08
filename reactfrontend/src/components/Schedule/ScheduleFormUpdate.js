@@ -135,7 +135,7 @@ const ScheduleFormUpdate = ({
                       max="23"
                       step={1}
                       px="0"
-                      w="20%"
+                      w="30%"
                       onChange={(value) =>
                         setScheduleData({
                           ...scheduleData,
@@ -158,7 +158,7 @@ const ScheduleFormUpdate = ({
                       max="59"
                       step={5}
                       px="0"
-                      w="20%"
+                      w="30%"
                       onChange={(value) =>
                         setScheduleData({
                           ...scheduleData,
@@ -185,7 +185,7 @@ const ScheduleFormUpdate = ({
                       max="23"
                       step={1}
                       px="0"
-                      w="20%"
+                      w="30%"
                       onChange={(value) =>
                         setScheduleData({
                           ...scheduleData,
@@ -208,7 +208,7 @@ const ScheduleFormUpdate = ({
                       max="59"
                       step={5}
                       px="0"
-                      w="20%"
+                      w="30%"
                       onChange={(value) =>
                         setScheduleData({
                           ...scheduleData,

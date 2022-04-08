@@ -1,13 +1,27 @@
 import { AddIcon, CalendarIcon, EditIcon, ViewIcon } from "@chakra-ui/icons";
-import { Box, CloseButton, Flex, Text } from "@chakra-ui/react";
+import {
+  Box,
+  CloseButton,
+  Flex,
+  Text,
+  Center,
+  Divider,
+} from "@chakra-ui/react";
 import React from "react";
 import NavItem from "./NavItem";
-
-const SidebarContent = ({ onClose, ...rest }) => {
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+const SidebarContent = ({ onClose, selectedDate, setSelectedDate }) => {
   return (
     <>
       <Box boxShadow="dark-lg" w={{ base: "full" }} pos="fixed" h="full">
-        <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
+        <Flex
+          h="20"
+          alignItems="center"
+          mx="8"
+          justifyContent="space-between"
+          flexWrap="wrap"
+        >
           <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
             Logo
           </Text>
@@ -15,7 +29,14 @@ const SidebarContent = ({ onClose, ...rest }) => {
             display={{ base: "flex", md: "none" }}
             onClick={onClose}
           />
+          <DatePicker
+            selected={selectedDate}
+            onChange={(date) => {
+              setSelectedDate(date);
+            }}
+          />
         </Flex>
+
         <NavItem name="Home" address="/home" icon={ViewIcon}>
           To Do
         </NavItem>

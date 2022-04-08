@@ -9,11 +9,11 @@ import {
 import React from "react";
 import SidebarContent from "./SidebarContent";
 
-const Sidebar = () => {
+const Sidebar = ({ selectedDate, setSelectedDate }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Box h="94vh">
+      <Box h="94vh" w="25vw">
         <Button ml="8" mt="5" onClick={onOpen}>
           Menu
         </Button>
@@ -26,7 +26,11 @@ const Sidebar = () => {
           onOverlayClick={onClose}
         >
           <DrawerContent>
-            <SidebarContent onClose={onClose}></SidebarContent>
+            <SidebarContent
+              selectedDate={selectedDate}
+              setSelectedDate={setSelectedDate}
+              onClose={onClose}
+            ></SidebarContent>
           </DrawerContent>
         </Drawer>
       </Box>

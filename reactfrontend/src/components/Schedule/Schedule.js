@@ -7,6 +7,8 @@ const Schedule = () => {
   const [scheduleData, setScheduleData] = useState([]);
   const [managementEntityId, setManagementEntityId] = useState([]);
   const [selectedScheduleId, setSelectedScheduleId] = useState(Number);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
   useEffect(() => {
     const date = new Date();
     fetch("/api/schedule/get", {
@@ -15,7 +17,7 @@ const Schedule = () => {
         Authorization: window.sessionStorage.getItem("token"),
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ date: date.toDateString() }),
+      body: JSON.stringify({ date: selectedDate.toDateString() }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -23,7 +25,7 @@ const Schedule = () => {
         setScheduleData(data.schedules);
         setManagementEntityId(data.managementEntityId);
       });
-  }, []);
+  }, [selectedDate]);
   useEffect(() => {
     console.log(selectedScheduleId);
   }, [selectedScheduleId]);
@@ -31,11 +33,15 @@ const Schedule = () => {
   return (
     <>
       <Flex h="94vh" w="100vw">
-        <Sidebar w="15vw" />
+        <Sidebar
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+          w="25vw"
+        />
         <ScheduleGraph
           graphData={scheduleData}
           setSelectedScheduleId={setSelectedScheduleId}
-          w="65vw"
+          w="55vw"
         ></ScheduleGraph>
         <ScheduleInsert
           managementEntityId={managementEntityId}

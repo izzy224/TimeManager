@@ -42,16 +42,17 @@ const dataTemplate = {
 const Todos = () => {
   const [boardData, setBoardData] = useState(dataTemplate);
   const [managementEntityId, setManagementEntityId] = useState(Number);
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
+  console.log(selectedDate);
   useEffect(() => {
-    const date = new Date();
     fetch("/api/todo/get", {
       method: "POST",
       headers: {
         Authorization: window.sessionStorage.getItem("token"),
         "Content-type": "application/json",
       },
-      body: JSON.stringify({ date: date.toDateString() }),
+      body: JSON.stringify({ date: selectedDate.toDateString() }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -73,7 +74,7 @@ const Todos = () => {
         setBoardData(tempBoardData);
         setManagementEntityId(data.managementEntityId);
       });
-  }, []);
+  }, [selectedDate]);
 
   const addCard = (card, laneId) => {
     console.log(card);
@@ -143,15 +144,19 @@ const Todos = () => {
   return (
     <>
       <Flex>
-        <Sidebar />
+        <Sidebar
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+          style={{ width: "25vw" }}
+        />
         <Board
+          style={{ backgroungColor: "red" }}
           editable
           style={{ height: "94vh", width: "100%" }}
           data={boardData}
           onCardAdd={addCard}
           onCardDelete={cardDelete}
           onCardMoveAcrossLanes={cardMoveAcrossLanes}
-          // onDataChange={dataChange}
         />
       </Flex>
     </>
